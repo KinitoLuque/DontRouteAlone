@@ -11,9 +11,13 @@ class Usuario(models.Model):
 	fNac = models.DateField(auto_now=False, auto_now_add=False)
 	imagen = models.ImageField()
 
+	def __unicode__(self):
+		return self.nombre
+
 class Ruta(models.Model):
-        titulo = models.CharField(max_length=30)
-        descripcion = models.TextField()
+    titulo = models.CharField(max_length=30)
+    descripcion = models.TextField()
+    creador = models.ForeignKey('Usuario', on_delete=models.CASCADE, null=True)
 
 class Localizacion(models.Model):
 	ruta = models.ForeignKey('Ruta', on_delete=models.CASCADE)
@@ -23,5 +27,4 @@ class Localizacion(models.Model):
 
 class Participantes(models.Model):
 	usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
-	ruta = models.ForeignKey('Ruta', on_delete=models.CASCADE)
-	creador = models.BooleanField(default=False)	
+	ruta = models.ForeignKey('Ruta', on_delete=models.CASCADE)	
