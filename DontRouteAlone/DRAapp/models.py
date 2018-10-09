@@ -17,7 +17,7 @@ class Usuario(models.Model):
 class Ruta(models.Model):
     titulo = models.CharField(max_length=30)
     descripcion = models.TextField()
-    creador = models.ForeignKey('Usuario', on_delete=models.CASCADE, null=True)
+    creador = models.ForeignKey('Usuario', on_delete=models.CASCADE, default=2)
 
 class Localizacion(models.Model):
 	ruta = models.ForeignKey('Ruta', on_delete=models.CASCADE)
