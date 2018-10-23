@@ -16,6 +16,17 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from DRAapp import views
+from DRAapp.views import ListaRuta, CreaUsuario, CreaRuta, ActualizaUsuario, ActualizaRuta, BorraUsuario, BorraRuta
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.base, name='base'),
+    url(r'^rutas/$', ListaRuta.as_view()),
+    url(r'usuario/add/$', CreaUsuario.as_view(), name='crea-usuario'),
+    url(r'usuario/(?P<pk>[0-9]+)/$', ActualizaUsuario.as_view(), name='actualiza-usuario'),
+    url(r'usuario/(?P<pk>[0-9]+)/delete/$', BorraUsuario.as_view(), name='borra-usuario'),
+    url(r'ruta/add/$', CreaRuta.as_view(), name='crea-ruta'),
+    url(r'ruta/(?P<pk>[0-9]+)/$', ActualizaRuta.as_view(), name='actualiza-ruta'),
+    url(r'ruta/(?P<pk>[0-9]+)/delete/$', BorraRuta.as_view(), name='borra-ruta')
 ]
