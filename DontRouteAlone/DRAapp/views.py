@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Ruta, Usuario
+from django.contrib.auth.models import User
 # Create your views here.
 
 def base(request):
@@ -26,8 +27,8 @@ class DetalleRuta(DetailView):
         return context
 
 class CreaUsuario(CreateView):
-	model = Usuario
-	fields = ['nombre', 'email', 'fNac', 'imagen']
+	model = User
+	fields = ['username', 'email', 'fNac', 'imagen']
 
 class CreaRuta(CreateView):
 	model = Ruta
